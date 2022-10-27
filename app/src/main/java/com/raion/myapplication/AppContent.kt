@@ -1,16 +1,20 @@
 package com.raion.myapplication
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.raion.myapplication.navigation.AppNavRoute
+import com.raion.myapplication.screen.SplashScreen
 import com.raion.myapplication.viewmodel.MainViewModel
 
 @Composable
 fun AppContent(
     navController: NavHostController,
-    mainViewModel: MainViewModel
+//    mainViewModel: MainViewModel
 ) {
     NavHost(navController = navController, startDestination = AppNavRoute.SplashScreen.name) {
         //Called like this:
@@ -21,7 +25,11 @@ fun AppContent(
         }*/
 
         composable(route = AppNavRoute.SplashScreen.name){
+            SplashScreen(navController = navController)
+        }
 
+        composable(route = AppNavRoute.HomeScreen.name){
+            Box(modifier = Modifier.fillMaxSize())
         }
     }
 }
