@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.raion.myapplication.navigation.AppNavRoute
 import com.raion.myapplication.screen.LandingScreen
+import com.raion.myapplication.screen.LoginScreen
 import com.raion.myapplication.screen.SplashScreen
 import com.raion.myapplication.viewmodel.MainViewModel
 
@@ -34,7 +35,7 @@ fun AppContent(
         }
 
         composable(route = AppNavRoute.LoginScreen.name) {
-
+            LoginScreen(navController = navController)
         }
 
         composable(route = AppNavRoute.RegisterScreen.name) {

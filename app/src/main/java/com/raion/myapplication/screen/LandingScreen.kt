@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.raion.myapplication.R
 import com.raion.myapplication.component.AppButtonField
+import com.raion.myapplication.navigation.AppNavRoute
 
 @Composable
 fun LandingScreen(
@@ -26,12 +27,16 @@ fun LandingScreen(
     /**Function*/
 
     /**Content*/
-    LandingContent(btnWidth = btnWidth.dp)
+    LandingContent(
+        btnWidth = btnWidth.dp,
+        navController = navController
+    )
 }
 
 @Composable
 private fun LandingContent(
-    btnWidth: Dp
+    btnWidth: Dp,
+    navController: NavController
 ) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         //BG
@@ -63,7 +68,7 @@ private fun LandingContent(
 
             AppButtonField(
                 modifier = Modifier.width(btnWidth),
-                onClick = { /*TODO*/ }
+                onClick = { navController.navigate(route = AppNavRoute.LoginScreen.name) }
             ) {
                 Text(text = "Masuk")
             }
