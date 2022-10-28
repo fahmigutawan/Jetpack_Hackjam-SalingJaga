@@ -70,14 +70,16 @@ private fun LandingContent(
                 modifier = Modifier.width(btnWidth),
                 onClick = { navController.navigate(route = AppNavRoute.LoginScreen.name) }
             ) {
-                Text(text = "Masuk")
+                Text(text = "Masuk", color = Color.White)
             }
 
             AppButtonField(
                 modifier = Modifier.width(btnWidth),
-                onClick = { /*TODO*/ }
+                onClick = { /*TODO*/
+                    navController.navigate(route = AppNavRoute.HomeScreen.name)
+                }
             ) {
-                Text(text = "Daftar")
+                Text(text = "Daftar", color = Color.White)
             }
         }
     }
