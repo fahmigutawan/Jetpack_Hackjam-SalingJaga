@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.raion.myapplication.data.AppRepository
 import com.raion.myapplication.viewmodel.LoginViewModel
 import com.raion.myapplication.viewmodel.MainViewModel
+import com.raion.myapplication.viewmodel.RegisterViewModel
 import com.raion.myapplication.viewmodel.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -29,4 +30,5 @@ val ViewModelModule = module {
     viewModel { MainViewModel(repository = get()) }
     viewModel { SplashViewModel(repository = get()) }
     viewModel { LoginViewModel(repository = get()) }
+    viewModel { RegisterViewModel(repository = get()) }
 }
