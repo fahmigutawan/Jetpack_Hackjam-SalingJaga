@@ -5,5 +5,8 @@ enum class AppNavRoute {
     HomeScreen,
     LandingScreen,
     RegisterScreen,
-    LoginScreen
+    LoginScreen,
+    DamkarScreen,
+    PolisiScreen,
+    RumahSakitScreen
 }

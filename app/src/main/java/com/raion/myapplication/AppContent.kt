@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.raion.myapplication.navigation.AppNavRoute
 import com.raion.myapplication.screen.LandingScreen
 import com.raion.myapplication.screen.LoginScreen
+import com.raion.myapplication.screen.PihakScreen
 import com.raion.myapplication.screen.SplashScreen
 import com.raion.myapplication.viewmodel.MainViewModel
 
@@ -43,6 +45,36 @@ fun AppContent(
         }
         composable(route = AppNavRoute.HomeScreen.name) {
 
+        }
+        composable(route = AppNavRoute.DamkarScreen.name) {
+            PihakScreen(
+                navController = navController,
+                title = "damkar",
+                image = R.drawable.damkar,
+                buka = "07.00-23.00",
+                alamat = "Jl. Binkil no.1",
+                dinas = "Dinas Pemadam Kebakaran"
+            )
+        }
+        composable(route = AppNavRoute.PolisiScreen.name) {
+            PihakScreen(
+                navController = navController,
+                title = "polisi",
+                image = R.drawable.polisi,
+                buka = "07.00-23.00",
+                alamat = "Jl. Binkil no.1",
+                dinas = "Kantor Polisi XYZ"
+            )
+        }
+        composable(route = AppNavRoute.RumahSakitScreen.name) {
+            PihakScreen(
+                navController = navController,
+                title = "ambulans",
+                image = R.drawable.rumahsakit,
+                buka = "07.00-23.00",
+                alamat = "Jl. Binkil no.1",
+                dinas = "Rumah Sakit ABC"
+            )
         }
     }
 }
