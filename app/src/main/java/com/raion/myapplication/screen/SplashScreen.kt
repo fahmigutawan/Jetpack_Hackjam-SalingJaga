@@ -13,13 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.raion.myapplication.navigation.AppNavRoute
+import com.raion.myapplication.viewmodel.SplashViewModel
 import kotlinx.coroutines.delay
+import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
+    /**Attrs*/
     var startAnimation by remember { mutableStateOf(false) }
     val alphaAnim = animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
@@ -27,19 +30,34 @@ fun SplashScreen(navController: NavHostController) {
             durationMillis = 3000
         )
     )
+    val viewModel = getViewModel<SplashViewModel>()
 
-    LaunchedEffect(key1 = true){
+    /**Function*/
+    LaunchedEffect(key1 = true) {
         startAnimation = true
         delay(4000)
-        navController.popBackStack()
-        navController.navigate(AppNavRoute.HomeScreen.name)
+
+        if(viewModel.userLoggedIn()){
+            navController.navigate(route = AppNavRoute.HomeScreen.name) {
+                popUpTo(route = AppNavRoute.SplashScreen.name) {
+                    inclusive = true
+                }
+            }
+        }else{
+            navController.navigate(route = AppNavRoute.LandingScreen.name) {
+                popUpTo(route = AppNavRoute.SplashScreen.name) {
+                    inclusive = true
+                }
+            }
+        }
     }
 
-    Splash(alpha = alphaAnim.value)
+    /**Content*/
+    SplashContent(alpha = alphaAnim.value)
 }
 
 @Composable
-fun Splash(alpha: Float) {
+private fun SplashContent(alpha: Float) {
     Box(
         modifier = Modifier
             .background(Color(0, 48, 73))
@@ -55,10 +73,4 @@ fun Splash(alpha: Float) {
             fontWeight = FontWeight.Bold
         )
     }
-}
-
-@Composable
-@Preview
-fun SplashScreenPreview() {
-    Splash(alpha = 1f)
 }

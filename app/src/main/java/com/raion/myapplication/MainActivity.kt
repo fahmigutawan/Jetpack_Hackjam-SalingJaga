@@ -18,6 +18,9 @@ import com.raion.myapplication.di.ViewModelModule
 import com.raion.myapplication.ui.theme.SalingJagaTheme
 import com.raion.myapplication.viewmodel.MainViewModel
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
@@ -26,18 +29,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             SalingJagaTheme(darkTheme = false) {
                 val navController = rememberNavController()
-                AppContent(navController = navController)
+                val mainViewmodel = getViewModel<MainViewModel>()
+
+                AppContent(navController = navController, mainViewModel = mainViewmodel)
             }
         }
     }
 }
 
-class MainApplication:Application(){
+class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
         // Start Dependency Injection
         startKoin {
+            androidLogger()
             androidContext(this@MainApplication)
             modules(listOf(AppModule, ViewModelModule))
         }

@@ -8,28 +8,40 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.raion.myapplication.navigation.AppNavRoute
+import com.raion.myapplication.screen.LandingScreen
 import com.raion.myapplication.screen.SplashScreen
 import com.raion.myapplication.viewmodel.MainViewModel
 
 @Composable
 fun AppContent(
     navController: NavHostController,
-//    mainViewModel: MainViewModel
+    mainViewModel: MainViewModel
 ) {
     NavHost(navController = navController, startDestination = AppNavRoute.SplashScreen.name) {
         //Called like this:
         /**composables(
-            route = "New Route, you can define this on AppNavRoute enum file at ./navigation/AppNavRoute.kt"
+        route = "New Route, you can define this on AppNavRoute enum file at ./navigation/AppNavRoute.kt"
         ){
-            You code the screen here
+        You code the screen here
         }*/
 
-        composable(route = AppNavRoute.SplashScreen.name){
+        composable(route = AppNavRoute.SplashScreen.name) {
             SplashScreen(navController = navController)
         }
 
-        composable(route = AppNavRoute.HomeScreen.name){
-            Box(modifier = Modifier.fillMaxSize())
+        composable(route = AppNavRoute.LandingScreen.name) {
+            LandingScreen(navController = navController)
+        }
+
+        composable(route = AppNavRoute.LoginScreen.name) {
+
+        }
+
+        composable(route = AppNavRoute.RegisterScreen.name) {
+
+        }
+        composable(route = AppNavRoute.HomeScreen.name) {
+
         }
     }
 }
