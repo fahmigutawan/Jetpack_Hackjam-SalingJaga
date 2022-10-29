@@ -75,9 +75,7 @@ private fun LandingContent(
 
             AppButtonField(
                 modifier = Modifier.width(btnWidth),
-                onClick = { /*TODO*/
-                    navController.navigate(route = AppNavRoute.HomeScreen.name)
-                }
+                onClick = { navController.navigate(route = AppNavRoute.RegisterScreen.name) }
             ) {
                 Text(text = "Daftar", color = Color.White)
             }

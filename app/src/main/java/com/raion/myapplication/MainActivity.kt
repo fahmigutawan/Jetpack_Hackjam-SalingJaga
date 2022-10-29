@@ -4,11 +4,15 @@ import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.raion.myapplication.component.AppBottomBar
@@ -90,7 +94,9 @@ class MainActivity : ComponentActivity() {
                     isFloatingActionButtonDocked = true,
                     floatingActionButtonPosition = FabPosition.Center
                 ) {
-                    AppContent(navController = navController, mainViewModel = mainViewModel)
+                    Box(modifier = Modifier.fillMaxSize().padding(it)){
+                        AppContent(navController = navController, mainViewModel = mainViewModel)
+                    }
                 }
             }
         }

@@ -4,11 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
@@ -17,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -27,7 +26,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.raion.myapplication.R
+import com.raion.myapplication.component.AppButtonField
 import com.raion.myapplication.component.AppTextInputField
+import com.raion.myapplication.navigation.AppNavRoute
+import com.raion.myapplication.snackbarListener
 import com.raion.myapplication.viewmodel.RegisterViewModel
 import org.koin.androidx.compose.getViewModel
 
@@ -37,6 +39,18 @@ fun RegisterScreen(navController: NavController) {
     val viewModel = getViewModel<RegisterViewModel>()
 
     /**Function*/
+    snackbarListener("Masukkan semua data yang dibutuhkan", viewModel.showShouldFillAllFields)
+    snackbarListener("Gagal registrasi. Coba lagi nanti", viewModel.showErrorSnackbar)
+    if(viewModel.startRegisterFlow.value){
+        viewModel.registerWithEmailPassword(
+            onSuccess = {
+                navController.navigate(route = AppNavRoute.HomeScreen.name)
+            },
+            onFailed = {
+                viewModel.showErrorSnackbar.value = !viewModel.showErrorSnackbar.value
+            }
+        )
+    }
 
     /**Content*/
     RegisterContent(
@@ -50,6 +64,8 @@ private fun RegisterContent(
     viewModel: RegisterViewModel,
     navController: NavController
 ) {
+    val btnWidth = LocalConfiguration.current.screenWidthDp / 2
+
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         //BG
         AsyncImage(
@@ -77,10 +93,11 @@ private fun RegisterContent(
                         .height(5.dp)
                         .width(40.dp),
                     backgroundColor = Color(180, 180, 180)
-                ){}
+                ) {}
                 // Text
-                Column(modifier = Modifier
-                    .fillMaxWidth(),
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth(),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(text = "Daftar", style = MaterialTheme.typography.h5)
@@ -88,16 +105,28 @@ private fun RegisterContent(
                 }
 
                 //Name Field
-                AppTextInputField(placeHolderText = "Nama Lengkap", valueState = viewModel.fullNameValueState)
+                AppTextInputField(
+                    placeHolderText = "Nama Lengkap",
+                    valueState = viewModel.fullNameValueState
+                )
 
                 //Email Field
-                AppTextInputField(placeHolderText = "Alamat Email", valueState = viewModel.emailValueState)
+                AppTextInputField(
+                    placeHolderText = "Alamat Email",
+                    valueState = viewModel.emailValueState
+                )
 
                 //Phone Number Field
-                AppTextInputField(placeHolderText = "No Telpon", valueState = viewModel.phoneNumberValueState)
+                AppTextInputField(
+                    placeHolderText = "No Telpon",
+                    valueState = viewModel.phoneNumberValueState
+                )
 
                 //Address
-                AppTextInputField(placeHolderText = "Alamat Rumah", valueState = viewModel.addressValueState)
+                AppTextInputField(
+                    placeHolderText = "Alamat Rumah",
+                    valueState = viewModel.addressValueState
+                )
 
                 // Password
                 AppTextInputField(
@@ -115,6 +144,93 @@ private fun RegisterContent(
                         )
                     }
                 )
+
+                // Daftar button
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    AppButtonField(
+                        modifier = Modifier.width(btnWidth.dp),
+                        onClick = {
+                            if(viewModel.allFilled()){
+                                viewModel.startRegisterFlow.value = true
+                            }else{
+                                viewModel.showShouldFillAllFields.value = true
+                            }
+                        }
+                    ) {
+                        Text(text = "Masuk", color = Color.White)
+                    }
+                }
+
+                // Masuk text button
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(text = "Sudah punya akun?")
+                        Text(
+                            modifier = Modifier.clickable { navController.navigate(route = AppNavRoute.LoginScreen.name) },
+                            text = "Masuk",
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                    Text(text = "atau")
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        Divider(
+                            modifier = Modifier.fillMaxWidth(),
+                            color = Color.LightGray,
+                            thickness = 1.dp
+                        )
+                        Box(
+                            modifier = Modifier.background(Color.White),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(modifier = Modifier.padding(vertical = 8.dp), text = "masuk melalui")
+                        }
+                    }
+                }
+
+                // Login methods buttons
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    // Google
+                    AppButtonField(
+                        shape = RoundedCornerShape(8.dp),
+                        onClick = { /*TODO*/ },
+                        borderColor = Color.LightGray,
+                        borderWidth = 1.dp,
+                        backgroundColor = Color.White
+                    ) {
+                        Icon(imageVector = Icons.Default.Circle, contentDescription = "Icon")
+                    }
+
+                    // Facebook
+                    AppButtonField(
+                        shape = RoundedCornerShape(8.dp),
+                        onClick = { /*TODO*/ },
+                        borderColor = Color.LightGray,
+                        borderWidth = 1.dp,
+                        backgroundColor = Color.White
+                    ) {
+                        Icon(imageVector = Icons.Default.Circle, contentDescription = "Icon")
+                    }
+
+                    // Apple
+                    AppButtonField(
+                        shape = RoundedCornerShape(8.dp),
+                        onClick = { /*TODO*/ },
+                        borderColor = Color.LightGray,
+                        borderWidth = 1.dp,
+                        backgroundColor = Color.White
+                    ) {
+                        Icon(imageVector = Icons.Default.Circle, contentDescription = "Icon")
+                    }
+                }
             }
         }
     }

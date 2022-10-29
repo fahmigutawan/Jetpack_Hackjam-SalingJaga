@@ -41,7 +41,7 @@ fun AppContent(
             RegisterScreen(navController = navController)
         }
         composable(route = AppNavRoute.HomeScreen.name) {
-
+            HomeScreen(navController = navController)
         }
         composable(route = AppNavRoute.DamkarScreen.name) {
             PihakScreen(

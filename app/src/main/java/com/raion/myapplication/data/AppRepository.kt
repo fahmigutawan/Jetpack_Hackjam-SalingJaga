@@ -37,7 +37,9 @@ class AppRepository constructor(
     ) {
         auth
             .createUserWithEmailAndPassword(email, password)
-            .addOnSuccessListener { onSuccess() }
+            .addOnSuccessListener {
+                loginWithEmailPassword(email, password, onSuccess, onFailed)
+            }
             .addOnFailureListener { onFailed() }
     }
 }

@@ -155,7 +155,7 @@ private fun LoginContent(
                     ) {
                         Text(text = "Belum punya akun?")
                         Text(
-                            modifier = Modifier.clickable { /*TODO*/ },
+                            modifier = Modifier.clickable { navController.navigate(route = AppNavRoute.RegisterScreen.name) },
                             text = "Daftar",
                             fontWeight = FontWeight.Bold
                         )
@@ -171,7 +171,7 @@ private fun LoginContent(
                             modifier = Modifier.background(Color.White),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text(modifier = Modifier.padding(8.dp), text = "masuk melalui")
+                            Text(modifier = Modifier.padding(vertical = 8.dp), text = "masuk melalui")
                         }
                     }
                 }

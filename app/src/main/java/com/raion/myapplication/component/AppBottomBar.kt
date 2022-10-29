@@ -27,7 +27,8 @@ fun AppBottomBar(
 ) {
     BottomAppBar(
         cutoutShape = CircleShape,
-        backgroundColor = Color.White
+        backgroundColor = Color.White,
+        elevation = 5.dp
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
