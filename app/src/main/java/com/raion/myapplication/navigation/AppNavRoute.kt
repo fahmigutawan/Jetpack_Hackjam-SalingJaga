@@ -3,6 +3,7 @@ package com.raion.myapplication.navigation
 enum class AppNavRoute {
     SplashScreen,
     HomeScreen,
+    SosScreen,
     ProfileScreen,
     LandingScreen,
     RegisterScreen,

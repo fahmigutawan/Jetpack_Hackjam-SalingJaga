@@ -90,7 +90,7 @@ class MainActivity : ComponentActivity() {
                     floatingActionButton = {
                         if (mainViewModel.showBottomBar) {
                             FloatingActionButton(
-                                onClick = { /*TODO*/ },
+                                onClick = { navController.navigate(route = AppNavRoute.SosScreen.name) },
                                 backgroundColor = Color.Red,
                                 shape = CircleShape
                             ) { Text(text = "SOS", color = Color.White) }
