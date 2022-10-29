@@ -97,12 +97,9 @@ private fun SosFormContent(
 
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 AppButtonField(
-                    modifier = Modifier
-                        .width(btnWidth.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(Color(0, 48, 73)),
-                    onClick = {
-                    }
+                    backgroundColor = BlueDark,
+                    rippleColor = Color.White,
+                    onClick = { /*TODO*/ }
                 ) {
                     Text(text = "Kirim Data", color = Color.White)
                 }

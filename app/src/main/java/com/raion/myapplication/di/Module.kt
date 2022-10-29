@@ -31,4 +31,5 @@ val ViewModelModule = module {
     viewModel { HomeViewModel(repository = get()) }
     viewModel { ProfileViewModel(repository = get()) }
     viewModel { MyProfileViewModel(repository = get()) }
+    viewModel { SosFormViewModel(repository = get()) }
 }
