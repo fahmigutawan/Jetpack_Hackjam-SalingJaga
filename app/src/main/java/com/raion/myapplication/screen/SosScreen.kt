@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.raion.myapplication.navigation.AppNavRoute
 import com.raion.myapplication.ui.theme.BlueDark
 
 @Composable
@@ -29,11 +30,15 @@ fun SosScreen(navController: NavController) {
     /**Function*/
 
     /**Content*/
-    SosContent()
+    SosContent(
+        navController = navController
+    )
 }
 
 @Composable
-private fun SosContent() {
+private fun SosContent(
+    navController: NavController
+) {
     val btnSize = LocalConfiguration.current.screenWidthDp / 3
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -113,7 +118,7 @@ private fun SosContent() {
                     modifier = Modifier
                         .size((btnSize).dp)
                         .clip(CircleShape)
-                        .clickable { /*TODO*/ }
+                        .clickable {navController.navigate(AppNavRoute.SosFormScreen.name)}
                         .background(Color.Red.copy(alpha = 1f)),
                     contentAlignment = Alignment.Center
                 ){
