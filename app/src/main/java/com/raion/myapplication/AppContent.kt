@@ -36,7 +36,6 @@ fun AppContent(
         composable(route = AppNavRoute.LoginScreen.name) {
             LoginScreen(navController = navController)
         }
-
         composable(route = AppNavRoute.RegisterScreen.name) {
             RegisterScreen(navController = navController)
         }
@@ -46,10 +45,13 @@ fun AppContent(
         composable(route = AppNavRoute.ProfileScreen.name) {
             ProfileScreen(navController = navController)
         }
+        composable(route = AppNavRoute.SettingsScreen.name) {
+            SettingsScreen(navController = navController)
+        }
         composable(route = AppNavRoute.DamkarScreen.name) {
             PihakScreen(
                 navController = navController,
-                title = "damkar",
+                title = "Damkar",
                 image = R.drawable.damkar,
                 buka = "07.00-23.00",
                 alamat = "Jl. Binkil no.1",
@@ -59,7 +61,7 @@ fun AppContent(
         composable(route = AppNavRoute.PolisiScreen.name) {
             PihakScreen(
                 navController = navController,
-                title = "polisi",
+                title = "Polisi",
                 image = R.drawable.polisi,
                 buka = "07.00-23.00",
                 alamat = "Jl. Binkil no.1",
@@ -69,7 +71,7 @@ fun AppContent(
         composable(route = AppNavRoute.RumahSakitScreen.name) {
             PihakScreen(
                 navController = navController,
-                title = "ambulans",
+                title = "Ambulans",
                 image = R.drawable.rumahsakit,
                 buka = "07.00-23.00",
                 alamat = "Jl. Binkil no.1",

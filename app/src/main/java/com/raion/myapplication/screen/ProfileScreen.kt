@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter.State.Empty.painter
 import com.raion.myapplication.R
+import com.raion.myapplication.navigation.AppNavRoute
 import kotlin.text.Typography
 
 @Composable
@@ -38,7 +39,7 @@ fun ProfileScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxSize(0.25f),
+                .fillMaxSize(0.23f),
             shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp)
         ) {
             Box(
@@ -56,7 +57,7 @@ fun ProfileScreen(
         ) {
             Text(
                 modifier = Modifier
-                    .padding(bottom = 70.dp),
+                    .padding(bottom = 35.dp),
                 text = "Profile",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
@@ -125,7 +126,7 @@ fun ProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 50.dp, bottom = 55.dp),
+                    .padding(top = 30.dp, bottom = 35.dp),
                 verticalArrangement = Arrangement.spacedBy(30.dp)
             ) {
                 //My Profile Row
@@ -187,7 +188,7 @@ fun ProfileScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.End
                     ) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {navController.navigate(route = AppNavRoute.SettingsScreen.name)}) {
                             Icon(
                                 imageVector = Icons.Default.ChevronRight,
                                 contentDescription = "Go to Settings",
