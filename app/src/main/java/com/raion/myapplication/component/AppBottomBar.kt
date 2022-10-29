@@ -73,6 +73,6 @@ enum class AppBottomBarItem(
     ),
     Profile(
         icon = Icons.Default.Person,
-        route = ""
+        route = AppNavRoute.ProfileScreen.name
     )
 }

@@ -84,10 +84,10 @@ fun PihakScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = title.uppercase(),
+                        text = title,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
-                        fontSize = MaterialTheme.typography.h6.fontSize,
+                        fontSize = MaterialTheme.typography.h5.fontSize,
                     )
                 }
             }
@@ -218,7 +218,7 @@ fun Container(
 fun PihakScreenPreview() {
     PihakScreen(
         navController = rememberNavController(),
-        title ="damkar",
+        title ="Damkar",
         image = R.drawable.damkar,
         buka = "07.00-23.00",
         alamat = "Jl. Bingkil No.1",
