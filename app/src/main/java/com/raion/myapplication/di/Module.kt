@@ -29,4 +29,6 @@ val ViewModelModule = module {
     viewModel { LoginViewModel(repository = get()) }
     viewModel { RegisterViewModel(repository = get()) }
     viewModel { HomeViewModel(repository = get()) }
+    viewModel { ProfileViewModel(repository = get()) }
+    viewModel { MyProfileViewModel(repository = get()) }
 }

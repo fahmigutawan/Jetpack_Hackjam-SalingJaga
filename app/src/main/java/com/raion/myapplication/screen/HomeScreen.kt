@@ -1,12 +1,16 @@
 package com.raion.myapplication.screen
 
+import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.preference.PreferenceManager
+import android.provider.Settings
 import android.view.LayoutInflater
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -18,16 +22,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.shouldShowRationale
 import com.raion.myapplication.R
 import com.raion.myapplication.component.AppButtonField
 import com.raion.myapplication.component.AppTopBar
 import com.raion.myapplication.component.AppTopBarNoContent
 import com.raion.myapplication.navigation.AppNavRoute
 import com.raion.myapplication.ui.theme.BlueDark
+import com.raion.myapplication.viewmodel.HomeViewModel
+import org.koin.androidx.compose.getViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -36,13 +48,91 @@ import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun HomeScreen(
     navController: NavController
 ) {
     /**Attrs*/
+    val permission = rememberPermissionState(permission = android.Manifest.permission.ACCESS_FINE_LOCATION)
+    val viewModel = getViewModel<HomeViewModel>()
+    val context = LocalContext.current
+    val appSettingIntent = Intent(
+        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+        Uri.parse("package:" + context.getPackageName())
+    )
 
     /**Function*/
+    if (viewModel.showLocationPermissionDeniedRationale.value) {
+        AlertDialog(
+            onDismissRequest = { /*TODO*/ },
+            buttons = {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = "Pastikan anda telah mengizinkan akses lokasi pada aplikasi De Montir",
+                        textAlign = TextAlign.Center
+                    )
+                    AppButtonField(
+                        onClick = { permission.launchPermissionRequest() }
+                    ) {
+                        Text(text = "Izinkan", color = Color.White)
+                    }
+                }
+            },
+            properties = DialogProperties(
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false
+            )
+        )
+    }
+    if (viewModel.showLocationPermissionDeniedNotRationale.value) {
+        AlertDialog(
+            onDismissRequest = { /*TODO*/ },
+            buttons = {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = "Sepertinya sengaja/tidak sengaja, anda telah menolak permintaan izin lokasi. " +
+                                "\nUntuk melanjutkan, anda harus mengizinkan akses lokasi secara manual di pengaturan",
+                        textAlign = TextAlign.Center
+                    )
+                    AppButtonField(
+                        onClick = {
+                            context.startActivity(appSettingIntent)
+                        }) {
+                        Text(text = "Buka Pengaturan", color = Color.White)
+                    }
+                }
+
+            },
+            properties = DialogProperties(
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false
+            )
+        )
+    }
+    when(permission.status){
+        is PermissionStatus.Denied -> {
+            if (permission.status.shouldShowRationale) {
+                viewModel.showLocationPermissionDeniedNotRationale.value = false
+                viewModel.showLocationPermissionDeniedRationale.value = true
+            } else {
+                viewModel.showLocationPermissionDeniedRationale.value = false
+                viewModel.showLocationPermissionDeniedNotRationale.value = true
+            }
+        }
+        PermissionStatus.Granted -> {
+            viewModel.showLocationPermissionDeniedRationale.value = false
+            viewModel.showLocationPermissionDeniedNotRationale.value = false
+        }
+    }
 
     /**Content*/
     Scaffold(
