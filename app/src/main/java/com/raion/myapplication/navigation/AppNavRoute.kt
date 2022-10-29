@@ -4,6 +4,7 @@ enum class AppNavRoute {
     SplashScreen,
     HomeScreen,
     SosScreen,
+    SosFormScreen,
     ProfileScreen,
     LandingScreen,
     RegisterScreen,
