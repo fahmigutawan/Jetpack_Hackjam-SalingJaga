@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -44,7 +45,7 @@ fun PihakScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxSize(0.17f),
+                .fillMaxHeight(0.17f),
             shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp)
         ) {
             Box(
@@ -57,7 +58,7 @@ fun PihakScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(25.dp)
+                .padding(top = 15.dp, start = 25.dp, bottom = 25.dp, end = 25.dp)
         ) {
             //ROW PIHAK
             Row(
@@ -97,6 +98,7 @@ fun PihakScreen(
                     .fillMaxWidth()
                     .padding(top = 20.dp)
                     .height(35.dp)
+                    .clip(RoundedCornerShape(13.dp))
                     .background(Color(235, 243, 246)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start

@@ -45,7 +45,7 @@ fun SettingsScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(25.dp)
+                .padding(top = 15.dp, start = 25.dp, bottom = 25.dp, end = 25.dp)
         ) {
             //ROW Title
             Row(

@@ -10,5 +10,6 @@ enum class AppNavRoute {
     DamkarScreen,
     PolisiScreen,
     RumahSakitScreen,
-    SettingsScreen
+    SettingsScreen,
+    MyProfileScreen
 }

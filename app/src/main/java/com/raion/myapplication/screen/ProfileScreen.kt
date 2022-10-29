@@ -39,7 +39,7 @@ fun ProfileScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxSize(0.23f),
+                .height(140.dp),
             shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp)
         ) {
             Box(
@@ -52,12 +52,12 @@ fun ProfileScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(30.dp),
+                .padding(top = 15.dp, start = 25.dp, bottom = 25.dp, end = 25.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 modifier = Modifier
-                    .padding(bottom = 35.dp),
+                    .padding(bottom = 20.dp),
                 text = "Profile",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
@@ -126,7 +126,7 @@ fun ProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 30.dp, bottom = 35.dp),
+                    .padding(top = 15.dp, bottom = 35.dp),
                 verticalArrangement = Arrangement.spacedBy(30.dp)
             ) {
                 //My Profile Row
@@ -154,7 +154,7 @@ fun ProfileScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.End
                     ) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {navController.navigate(AppNavRoute.MyProfileScreen.name)}) {
                             Icon(
                                 imageVector = Icons.Default.ChevronRight,
                                 contentDescription = "Go to My Profile",
