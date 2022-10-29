@@ -15,15 +15,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.raion.myapplication.R
 import com.raion.myapplication.navigation.AppNavRoute
 import com.raion.myapplication.viewmodel.ProfileViewModel
 import org.koin.androidx.compose.getViewModel
-import kotlin.text.Typography
 
 @Composable
 fun ProfileScreen(
@@ -221,7 +218,7 @@ fun ProfileScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.End
                     ) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {navController.navigate(AppNavRoute.FAQScreen.name)}) {
                             Icon(
                                 imageVector = Icons.Default.ChevronRight,
                                 contentDescription = "Go to FAQ",
@@ -308,10 +305,4 @@ fun ProfileScreen(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun ProfileScreenPreview() {
-    ProfileScreen(navController = rememberNavController())
 }

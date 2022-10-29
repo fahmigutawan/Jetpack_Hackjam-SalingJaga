@@ -15,5 +15,6 @@ enum class AppNavRoute {
     MyProfileScreen,
     AboutUsScreen,
     PrivacyPolicyScreen,
-    TermsConditionScreen
+    TermsConditionScreen,
+    FAQScreen
 }
