@@ -62,6 +62,9 @@ fun AppContent(
         composable(route = AppNavRoute.FAQScreen.name) {
             FAQScreen(navController = navController)
         }
+        composable(route = AppNavRoute.SosFormScreen.name) {
+            SosFormScreen(navController = navController)
+        }
         composable(route = AppNavRoute.DamkarScreen.name) {
             PihakScreen(
                 navController = navController,
