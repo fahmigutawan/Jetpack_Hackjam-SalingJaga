@@ -11,5 +11,8 @@ enum class AppNavRoute {
     PolisiScreen,
     RumahSakitScreen,
     SettingsScreen,
-    MyProfileScreen
+    MyProfileScreen,
+    AboutUsScreen,
+    PrivacyPolicyScreen,
+    TermsConditionScreen
 }

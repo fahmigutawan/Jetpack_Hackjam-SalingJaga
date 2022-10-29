@@ -15,22 +15,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import coil.compose.AsyncImage
-import coil.compose.AsyncImagePainter.State.Empty.painter
 import com.raion.myapplication.R
 import com.raion.myapplication.component.AppButtonField
 import com.raion.myapplication.component.AppTextInputField
-import com.raion.myapplication.navigation.AppNavRoute
 import com.raion.myapplication.viewmodel.MyProfileViewModel
-import com.raion.myapplication.viewmodel.RegisterViewModel
 import org.koin.androidx.compose.getViewModel
-import kotlin.text.Typography
 
 @Composable
 fun MyProfileScreen(
@@ -130,7 +122,7 @@ fun MyProfileContent(
                             )
                             .padding(6.dp)
                             .clip(shape = RoundedCornerShape(58.dp)),
-                        painter = painterResource(id = R.drawable.damkar),
+                        painter = painterResource(id = R.drawable.img_profile),
                         contentDescription = "Profile Picture"
                     )
                 }

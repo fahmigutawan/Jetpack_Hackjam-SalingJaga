@@ -1,10 +1,6 @@
 package com.raion.myapplication
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -51,11 +47,20 @@ fun AppContent(
         composable(route = AppNavRoute.MyProfileScreen.name) {
             MyProfileScreen(navController = navController)
         }
+        composable(route = AppNavRoute.AboutUsScreen.name) {
+            AboutUsScreen(navController = navController)
+        }
+        composable(route = AppNavRoute.PrivacyPolicyScreen.name) {
+            PrivacyPolicyScreen(navController = navController)
+        }
+        composable(route = AppNavRoute.TermsConditionScreen.name) {
+            TermsConditionScreen(navController = navController)
+        }
         composable(route = AppNavRoute.DamkarScreen.name) {
             PihakScreen(
                 navController = navController,
                 title = "Damkar",
-                image = R.drawable.damkar,
+                image = R.drawable.img_damkar,
                 buka = "07.00-23.00",
                 alamat = "Jl. Binkil no.1",
                 dinas = "Dinas Pemadam Kebakaran"
@@ -65,7 +70,7 @@ fun AppContent(
             PihakScreen(
                 navController = navController,
                 title = "Polisi",
-                image = R.drawable.polisi,
+                image = R.drawable.img_polisi,
                 buka = "07.00-23.00",
                 alamat = "Jl. Binkil no.1",
                 dinas = "Kantor Polisi XYZ"
@@ -75,7 +80,7 @@ fun AppContent(
             PihakScreen(
                 navController = navController,
                 title = "Ambulans",
-                image = R.drawable.rumahsakit,
+                image = R.drawable.img_rumahsakit,
                 buka = "07.00-23.00",
                 alamat = "Jl. Binkil no.1",
                 dinas = "Rumah Sakit ABC"

@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.raion.myapplication.navigation.AppNavRoute
 
 @Composable
 fun SettingsScreen(
@@ -86,7 +87,7 @@ fun SettingsScreen(
                     .padding(top = 100.dp),
                 verticalArrangement = Arrangement.spacedBy(30.dp)
             ) {
-                //My Profile Row
+                //Privacy Policy Row
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -111,7 +112,7 @@ fun SettingsScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.End
                     ) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = { navController.navigate(AppNavRoute.PrivacyPolicyScreen.name) }) {
                             Icon(
                                 imageVector = Icons.Default.ChevronRight,
                                 contentDescription = "Go to Privacy Policy",
@@ -120,7 +121,7 @@ fun SettingsScreen(
                         }
                     }
                 }
-                //Settings Row
+                //Terms and References Row
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -145,7 +146,7 @@ fun SettingsScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.End
                     ) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {AppNavRoute.TermsConditionScreen.name}) {
                             Icon(
                                 imageVector = Icons.Default.ChevronRight,
                                 contentDescription = "Go to Terms and References",

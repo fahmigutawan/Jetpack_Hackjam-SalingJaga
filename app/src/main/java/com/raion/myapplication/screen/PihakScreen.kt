@@ -22,7 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.raion.myapplication.R
@@ -41,7 +40,7 @@ fun PihakScreen(
             .fillMaxSize()
             .background(Color.White)
     ) {
-        //Bakcground
+        //Background
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -221,7 +220,7 @@ fun PihakScreenPreview() {
     PihakScreen(
         navController = rememberNavController(),
         title ="Damkar",
-        image = R.drawable.damkar,
+        image = R.drawable.img_damkar,
         buka = "07.00-23.00",
         alamat = "Jl. Bingkil No.1",
         dinas = "Dinas Pemadam Kebakaran"
@@ -232,7 +231,7 @@ fun PihakScreenPreview() {
 @Composable
 fun ContainerPreview() {
     Container(
-        image = R.drawable.damkar,
+        image = R.drawable.img_damkar,
         buka = "07.00-23.00",
         alamat = "Jl. Bingkil No.1",
         dinas = "Dinas Pemadam Kebakaran"
