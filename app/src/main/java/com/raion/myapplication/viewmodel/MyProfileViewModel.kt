@@ -13,8 +13,6 @@ class MyProfileViewModel constructor(
     val provinceValueState =  mutableStateOf("")
     val cityValueState =  mutableStateOf("")
     val streetValueState =  mutableStateOf("")
-    val passwordValueState = mutableStateOf("")
-    val passwordVisible = mutableStateOf(false)
     val showErrorSnackbar = mutableStateOf(false)
     val showShouldFillAllFields = mutableStateOf(false)
     val startRegisterFlow = mutableStateOf(false)
@@ -23,7 +21,6 @@ class MyProfileViewModel constructor(
 
     fun allFilled():Boolean{
         if(emailValueState.value.isEmpty()) return false
-        if(passwordValueState.value.isEmpty()) return false
         if(fullNameValueState.value.isEmpty()) return false
         if(phoneNumberValueState.value.isEmpty()) return false
         if(streetValueState.value.isEmpty()) return false

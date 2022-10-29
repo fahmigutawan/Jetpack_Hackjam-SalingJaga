@@ -171,14 +171,14 @@ fun MyProfileContent(
                     AppTextInputField(
                         modifier = Modifier.weight(1f),
                         placeHolderText = "Province",
-                        valueState = viewModel.emailValueState
+                        valueState = viewModel.provinceValueState
                     )
 
                     //City Field
                     AppTextInputField(
                         modifier = Modifier.weight(1f),
                         placeHolderText = "City",
-                        valueState = viewModel.emailValueState
+                        valueState = viewModel.cityValueState
                     )
                 }
 
