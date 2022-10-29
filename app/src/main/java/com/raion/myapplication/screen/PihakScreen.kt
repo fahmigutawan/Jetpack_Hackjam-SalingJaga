@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,7 +71,7 @@ fun PihakScreen(
                     onClick = {
                         navController.popBackStack()
                     }
-                ){
+                ) {
                     Icon(
                         imageVector = Icons.Default.ChevronLeft,
                         contentDescription = "chevron left",
@@ -110,23 +111,23 @@ fun PihakScreen(
                     Icon(
                         imageVector = Icons.Default.Search,
                         contentDescription = "search",
-                        tint = Color(179,180,180)
+                        tint = Color(179, 180, 180)
                     )
                 }
                 Text(
                     text = "Search",
-                    color = Color(179,180,180)
+                    color = Color(179, 180, 180)
                 )
             }
 
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-            ){
+            ) {
                 itemsIndexed(
-                    listOf("a","b","c","d","e","f","g","h","i")
-                ){ index, item ->
-                    Spacer(modifier = Modifier.height(20.dp))
+                    listOf("a", "b", "c", "d", "e", "f", "g", "h", "i")
+                ) { index, item ->
+                    Spacer(modifier = Modifier.height(10.dp))
                     Container(
                         image = image,
                         buka = buka,
@@ -146,16 +147,19 @@ fun Container(
     alamat: String,
     dinas: String
 ) {
-    Card(
+    Row(
         modifier = Modifier
-            .height(110.dp),
-        shape = RoundedCornerShape(10.dp),
+            .fillMaxWidth()
+            .height(100.dp)
     ) {
         Row(
             modifier = Modifier
+                .clip(RoundedCornerShape(10.dp))
+                .fillMaxHeight()
+                .weight(6f)
                 .background(Color(235, 243, 246))
                 .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceAround,
+            horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
@@ -171,7 +175,7 @@ fun Container(
                     contentScale = ContentScale.Crop
                 )
             }
-            Column (modifier = Modifier.padding(start = 10.dp)){
+            Column(modifier = Modifier.padding(start = 10.dp)) {
                 Text(
                     modifier = Modifier.padding(bottom = 3.dp),
                     text = "Kota Malang",
@@ -193,24 +197,47 @@ fun Container(
                     fontSize = 12.sp
                 )
             }
-            Row(
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .weight(1f),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.End
+        ) {
+            Box(
                 modifier = Modifier
-                    .weight(1f),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
+                    .size(45.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(Color(235, 243, 246)),
+                contentAlignment = Alignment.Center
             ) {
-                IconButton(
-                    modifier = Modifier.size(25.dp),
-                    onClick = { /*TODO*/ }
-                ) {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Image(
+                        modifier = Modifier
+                            .size(20.dp),
+                        painter = painterResource(id = R.drawable.ic_whatsapp),
+                        contentDescription = "WhatsApp"
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .size(45.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(Color(235, 243, 246)),
+                contentAlignment = Alignment.Center
+            ) {
+                IconButton(onClick = { /*TODO*/ }) {
                     Icon(
-                        imageVector = Icons.Default.ChevronRight,
-                        contentDescription = "chevron right",
+                        modifier = Modifier
+                            .size(20.dp),
+                        imageVector = Icons.Default.Language,
+                        contentDescription = "Web"
                     )
                 }
             }
         }
-
     }
 }
 
@@ -219,7 +246,7 @@ fun Container(
 fun PihakScreenPreview() {
     PihakScreen(
         navController = rememberNavController(),
-        title ="Damkar",
+        title = "Damkar",
         image = R.drawable.img_damkar,
         buka = "07.00-23.00",
         alamat = "Jl. Bingkil No.1",
