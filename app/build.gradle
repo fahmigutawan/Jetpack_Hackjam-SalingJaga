@@ -82,7 +82,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
     // Accompanist-Permission
-    implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-permissions:0.25.1"
 
     // Accompanist-Placeholder
     implementation "com.google.accompanist:accompanist-placeholder:$accompanist_version"

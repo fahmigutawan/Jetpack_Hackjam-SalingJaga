@@ -64,6 +64,11 @@ class MainActivity : ComponentActivity() {
                             mainViewModel.recentBottomBarRoute = destination.route ?: ""
                         }
 
+                        AppNavRoute.ProfileScreen.name -> {
+                            mainViewModel.showBottomBar = true
+                            mainViewModel.recentBottomBarRoute = destination.route ?: ""
+                        }
+
                         else -> {
                             mainViewModel.showBottomBar = false
                             mainViewModel.recentBottomBarRoute = destination.route ?: ""

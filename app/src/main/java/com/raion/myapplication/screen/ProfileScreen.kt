@@ -21,11 +21,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.raion.myapplication.R
 import com.raion.myapplication.navigation.AppNavRoute
+import com.raion.myapplication.viewmodel.ProfileViewModel
+import org.koin.androidx.compose.getViewModel
+import kotlin.text.Typography
 
 @Composable
 fun ProfileScreen(
     navController: NavController
 ) {
+    val viewModel = getViewModel<ProfileViewModel>()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -250,7 +254,7 @@ fun ProfileScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.End
                     ) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = { navController.navigate(AppNavRoute.AboutUsScreen.name) }) {
                             Icon(
                                 imageVector = Icons.Default.ChevronRight,
                                 contentDescription = "Go to About App",
@@ -285,7 +289,15 @@ fun ProfileScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
-                    IconButton(onClick = { navController.navigate(AppNavRoute.AboutUsScreen.name) }) {
+                    IconButton(onClick = {
+                        viewModel.logout {
+                            navController.navigate(route = AppNavRoute.LandingScreen.name){
+                                popUpTo(route = AppNavRoute.ProfileScreen.name){
+                                    inclusive = true
+                                }
+                            }
+                        }
+                    }) {
                         Icon(
                             imageVector = Icons.Default.ChevronRight,
                             contentDescription = "Logout",
